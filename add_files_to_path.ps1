@@ -1,3 +1,8 @@
+Param( 
+[string] $InputFilePath  
+)
+
+$fileName = Split-Path $InputFilePath -Leaf
 
 # Allow easy customization of colors
 function Format-Color([hashtable] $Colors = @{}, [switch] $SimpleMatch) {
@@ -16,7 +21,7 @@ function Format-Color([hashtable] $Colors = @{}, [switch] $SimpleMatch) {
 	}
 }
 
-$folders = Get-ChildItem -Path . -Directory -Force -ErrorAction SilentlyContinue | Select-Object FullName
+
 $oldPath = [System.Environment]::GetEnvironmentVariable('PATH', 'User');
 $escapedPath = [RegEx]::Escape($oldPath)
 Write-Host ""
@@ -26,23 +31,25 @@ Write-Host "====================================================================
 $oldPath
 Write-Host ""
 Write-Host "==================================================================================================================================="
-Write-Host "The following folders were found in the working directory and will be added to your PATH: ";
+Write-Host "The following file was found in the working directory. This will be added to your PATH by first creating a directory to contain the file, and then by adding this directory to your PATH." -ForegroundColor Yellow;
 Write-Host "==================================================================================================================================="
+
+Write-Output $InputFilePath
 
 $outputTable = @()
 $alreadyExistsString = "Already exists and will NOT be added to PATH."
 $willBeAddedString = "Will be added to PATH."
 Foreach($folder in $folders){
-  if($oldPath -Match [RegEx]::Escape($folder.FullName)){
+  if($oldPath -Match [RegEx]::Escape($PATHtoFileFolder)){
     $entry = [PSCustomObject]@{
-      Path = $folder.FullName
+      Path = $PATHtoFileFolder
       Status = $alreadyExistsString
     }
     $outputTable += $entry
   } 
   else {
     $entry = [PSCustomObject]@{
-      Path = $folder.FullName
+      Path = $PATHtoFileFolder
       Status = $willBeAddedString
     }
     $outputTable += $entry
@@ -56,30 +63,34 @@ $outputTable | Format-Table -AutoSize | Format-Color @{$willBeAddedString = 'Gre
 [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
 
 $result = [System.Windows.Forms.MessageBox]::Show(
-    "Are you sure you want to add the listed folder(s) to your PATH?",
+    "Are you sure you want to add the listed file(s) to your PATH?",
     "Add items to PATH",
     [System.Windows.Forms.MessageBoxButtons]::YesNo,
     [System.Windows.Forms.MessageBoxIcon]::Warning
 )
 
 if ($result -eq "Yes") {
+# Create folder to contain specified file and copy file over to this directory...
+  
+  md -Force ~\Documents\PATH-Manager\$fileName
+  $PATHtoFileFolder = "~\Documents\PATH-Manager\$fileName"
+  New-Item -Path "~\Documents\PATH-Manager\$fileName" -Name $fileName -ItemType HardLink -Value $InputFilePath
 
   $addedOutputTable = @()
   $successString = "Successfully added to PATH."
   $updatedPath = $oldPath
-    Foreach($folder in $folders){
-      if(!($oldPath -Match [RegEx]::Escape($folder.FullName))){
-      $updatedPath += ";$($folder.FullName)"
+
+      if(!($oldPath -Match [RegEx]::Escape($PATHtoFileFolder))){
+      $updatedPath += ";$($PATHtoFileFolder)"
       $entry = [PSCustomObject]@{
-      Path = $folder.FullName
+      Path = $PATHtoFileFolder
       Status = $successString
       }
      $addedOutputTable += $entry
     } 
-}
 
 Write-Host "==================================================================================================================================="
-  Write-Host "The following folders were added to your PATH:";
+  Write-Host "The following files were added to your PATH:";
   Write-Host "==================================================================================================================================="
   $addedOutputTable | Format-Table -AutoSize | Format-Color @{$successString = 'Green'}
 
