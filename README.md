@@ -1,3 +1,7 @@
+# This needs to be rewritten as I changed up the project. Sooooooo, don't follow this... yet.
+
+
+
 # Installation:
 Grab the file from the repo, or use `wget`, `curl`, etc:
 
