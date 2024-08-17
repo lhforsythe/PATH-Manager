@@ -1,0 +1,15 @@
+﻿Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Add Folder To PATH]
+"Icon"="\"C:\\PathManager\\assets\\addtopath_folder.ico\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Add Folder To PATH\command]
+@="powershell.exe \"C:\\PathManager\\powershellscripts\\add_folders_to_path.ps1\""
+
+[HKEY_CLASSES_ROOT\*\shell\Add File to PATH]
+"Icon"="\"C:\\PathManager\\assets\\addtopath_file.ico\""
+
+[HKEY_CLASSES_ROOT\*\shell\Add File to PATH\command]
+@="powershell.exe -File \"C:\\PathManager\\powershellscripts\\add_files_to_path.ps1\" -InputFilePath \"%1\""
+
+
