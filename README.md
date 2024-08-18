@@ -1,7 +1,8 @@
-# This needs to be rewritten as I changed up the project. Sooooooo, don't follow this... yet.
 
 
+#### █▓▒▒░░░ᴛʜɪꜱ ᴘʀᴏɢʀᴀᴍ ᴀᴅᴅꜱ ᴀ "ᴀᴅᴅ ᴛᴏ ᴘᴀᴛʜ" ᴏᴘᴛɪᴏɴ ᴛᴏ ᴛʜᴇ ꜰɪʟᴇ ᴇxᴘʟᴏʀᴇʀ ᴄᴏɴᴛᴇxᴛ ᴍᴇɴᴜ (ᴛʜᴇ ᴍᴇɴᴜ ʏᴏᴜ ɢᴇᴛ ᴡʜᴇɴ ᴀ ꜰɪʟᴇ/ꜰᴏʟᴅᴇʀ ɪꜱ ʀɪɢʜᴛ ᴄʟɪᴄᴋᴇᴅ) ꜰᴏʀ ʙᴏᴛʜ ꜰɪʟᴇꜱ ᴀɴᴅ ꜰᴏʟᴅᴇʀꜱ. ᴡʜᴇɴ ᴄʟɪᴄᴋᴇᴅ, ɪᴛ ᴡɪʟʟ ʀᴜɴ ᴀ ᴘᴏᴡᴇʀꜱʜᴇʟʟ ꜱᴄʀɪᴘᴛ ᴛʜᴀᴛ ᴀᴅᴅꜱ ᴛʜᴇ ꜰɪʟᴇ/ꜰᴏʟᴅᴇʀ ᴛᴏ ᴛʜᴇ ᴡɪɴᴅᴏᴡꜱ ᴘᴀᴛʜ (ᴘʟᴀɴɴɪɴɢ ᴏɴ ᴀᴅᴅɪɴɢ ꜱᴜᴘᴘᴏʀᴛ ꜰᴏʀ ʟɪɴᴜx ᴀɴᴅ ᴘᴏꜱꜱɪʙʟʏ ᴍᴀᴄᴏꜱ ɪɴ ᴛʜᴇ ɴᴇᴀʀ ꜰᴜᴛᴜʀᴇ). ᴀʟᴛʜᴏᴜɢʜ ɴᴏᴛ ᴘᴇʀꜰᴇᴄᴛ, ᴛʜɪꜱ ᴍᴏꜱᴛʟʏ ᴡᴏʀᴋꜱ ᴀꜱ ɪ ᴀᴛᴛᴇɴᴅᴇᴅ ɪᴛ ᴛᴏ. ░░░▒▒▓█
 
+<img src="./assets/addfolderexample.png" width="300"> <img src="./assets/addfileexample.png" width="213">
 # Installation:
 Grab the file from the repo, or use `wget`, `curl`, etc:
 
